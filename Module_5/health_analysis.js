@@ -8,6 +8,7 @@ function addPatient() {
     const gender = document.querySelector('input[name="gender"]:checked');
     const age = document.getElementById("age").value;
     const condition = document.getElementById("condition").value;
+    document.getElementById("title").style.display = "block";
 
     if (name && gender && age && condition) {
         patients.push({ name, gender: gender.value, age, condition });
@@ -68,6 +69,7 @@ addPatientButton.addEventListener("click", addPatient);
 function searchCondition() {
     const input = document.getElementById('conditionInput').value.toLowerCase();
     const resultDiv = document.getElementById('result');
+    document.getElementById("title").style.display = "block";
     resultDiv.innerHTML = '';
 
     fetch('health_analysis.json')
@@ -81,7 +83,7 @@ function searchCondition() {
           const treatment = condition.treatment;
 
           resultDiv.innerHTML += `<h2>${condition.name}</h2>`;
-          resultDiv.innerHTML += `<img src="${condition.imagesrc}" alt="hjh">`;
+          resultDiv.innerHTML += `<img src="${condition.imagesrc}" alt="${input} example image">`;
 
           resultDiv.innerHTML += `<p><strong>Symptoms:</strong> ${symptoms}</p>`;
           resultDiv.innerHTML += `<p><strong>Prevention:</strong> ${prevention}</p>`;
@@ -94,5 +96,6 @@ function searchCondition() {
         console.error('Error:', error);
         resultDiv.innerHTML = 'An error occurred while fetching data.';
       });
-  }
-  btnSearch.addEventListener('click', searchCondition);
+}
+
+btnSearch.addEventListener('click', searchCondition);
