@@ -4,10 +4,9 @@ xhr.open('GET', url, true);
 xhr.responseType = 'json';
 
 xhr.onload = function() {
-  var articles = xhr.response.articles;
-  var articlesDiv = document.getElementById('articles');
-  
-  articles.forEach(function(article) {
+var articles = xhr.response.articles;
+var articlesDiv = document.getElementById('articles');
+articles.forEach(function(article) {
     var articleDiv = document.createElement('div');
     articleDiv.classList.add('article');
 
@@ -44,8 +43,10 @@ xhr.onload = function() {
     articleDiv.appendChild(benefitsHeader);
     articleDiv.appendChild(benefitsList);
 
-    articlesDiv.appendChild(articleDiv);
-  });
-};
+    articlesDiv.appendChild(articleDiv);  
 
-xhr.send();
+    var articleDiv = document.createElement('div');
+    articleDiv.classList.add('article');
+    articleDiv.appendChild(title);
+  })};
+  xhr.send();
